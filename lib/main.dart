@@ -1,5 +1,7 @@
+
 import 'package:flutter/material.dart';
-import 'Screens/get_started.dart'; // make sure the path is correct
+import 'Screens/get_started.dart';
+import 'Screens/login.dart';  // make sure the path is correct
 
 void main() => runApp(MyApp());
 
@@ -15,6 +17,7 @@ class MyApp extends StatelessWidget {
       // Define app routes
       routes: {
         '/': (context) => const GetStartedPage(), // Initial page
+        '/login': (context) => const LoginPage(),
         // Add other routes like '/login': (context) => LoginPage() later
       },
     );
