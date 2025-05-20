@@ -29,28 +29,28 @@ class _HomePageState extends State<HomePage> {
   final List<Map<String, dynamic>> places = [
     {
       'name': 'Central Park',
-      'image': 'https://picsum.photos/200',
+      'image': 'assets/res4.jpg',
       'description': 'Beautiful park in the heart of the city',
       'rating': 4.5,
       'distance': '1.5 km'
     },
     {
       'name': 'History Museum',
-      'image': 'https://picsum.photos/201',
+      'image': 'assets/his1.jpg',
       'description': 'Explore the city\'s rich history',
       'rating': 4.8,
       'distance': '2.3 km'
     },
     {
       'name': 'Hotel Risotto',
-      'image': 'https://picsum.photos/203',
+      'image': 'assets/res3.jpg',
       'description': 'Vintage Hotel to Heal Your Heart',
       'rating': 4.2,
       'distance': '2.5 km'
     },
     {
       'name': 'Pizzaria',
-      'image': 'https://picsum.photos/271',
+      'image': 'assets/res2.jpg',
       'description': 'Savour the Most Delicious Pizza!',
       'rating': 4.3,
       'distance': '3.3 km'
@@ -110,7 +110,7 @@ class _HomePageState extends State<HomePage> {
               backgroundColor: Colors.grey[300],
               child: ClipOval(
                 child: Image.network(
-                  'https://picsum.photos/100',
+                  'assets/res4.jpg',
                   width: 40,
                   height: 40,
                   fit: BoxFit.cover,
@@ -266,182 +266,177 @@ class _HomePageState extends State<HomePage> {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
       ),
-      child: InkWell( // Added for better tap feedback
+      child: InkWell(
         onTap: () {
           // Handle card tap - can navigate to detail view
         },
-        child: LayoutBuilder(
-          builder: (BuildContext context, BoxConstraints constraints) {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Image and Overlay Section
+            Stack(
               children: [
-                // Image Section with fixed height
-                Stack(
-                  children: [
-                    ClipRRect(
-                      borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
-                      child: Image.network(
-                        place['image'],
-                        height: 120,
-                        width: double.infinity,
-                        fit: BoxFit.cover,
-                        errorBuilder: (context, error, stackTrace) => Container(
-                          height: 120,
-                          color: Colors.grey[300],
-                          child: const Icon(Icons.error),
-                        ),
-                        loadingBuilder: (context, child, loadingProgress) {
-                          if (loadingProgress == null) return child;
-                          return Container(
-                            height: 120,
-                            color: Colors.grey[300],
-                            child: const Center(child: CircularProgressIndicator()),
-                          );
-                        },
-                      ),
+                // Image
+                ClipRRect(
+                  borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
+                  child: Image.asset(
+                    place['image'],
+                    height: 120,
+                    width: double.infinity,
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) => Container(
+                      height: 120,
+                      color: deepSeaGreen.withValues(alpha: 50),
+                      child: Icon(Icons.image_not_supported, 
+                        color: deepSeaGreen.withValues(alpha: 100)),
                     ),
-                    // Optional: Add gradient overlay for better text visibility if needed
-                    Positioned(
-                      bottom: 0,
-                      left: 0,
-                      right: 0,
-                      child: Container(
-                        height: 40,
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.bottomCenter,
-                            end: Alignment.topCenter,
-                            colors: [
-                              Colors.black.withValues(alpha: 153),
-                              Colors.transparent,
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    // Rating badge
-                    Positioned(
-                      top: 8,
-                      right: 8,
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                        decoration: BoxDecoration(
-                          color: Colors.black.withValues(alpha: 179),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            const Icon(Icons.star, size: 14, color: Colors.amber),
-                            const SizedBox(width: 4),
-                            Text(
-                              '${place['rating']}',
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
-
-                // Content Section
-                Expanded(
+                // Dark overlay for better text contrast
+                Positioned(
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
                   child: Container(
-                    padding: const EdgeInsets.all(12),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    height: 20,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.bottomCenter,
+                        end: Alignment.topCenter,
+                        colors: [
+                          Colors.white, skyBlue
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                // Rating badge
+                Positioned(
+                  top: 8,
+                  right: 8,
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                    decoration: BoxDecoration(
+                      color: blueLagoon,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
                       children: [
-                        // Title
+                        const Icon(
+                          Icons.star,
+                          size: 16,
+                          color: Colors.amber,
+                        ),
+                        const SizedBox(width: 4),
                         Text(
-                          place['name'],
-                          style: TextStyle(
-                            fontSize: 16,
+                          '${place['rating']}',
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 12,
                             fontWeight: FontWeight.bold,
-                            color: deepSeaGreen,
-                          ),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        const SizedBox(height: 4),
-
-                        // Description with flexible height
-                        Expanded(
-                          child: Text(
-                            place['description'],
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Colors.grey[600],
-                              height: 1.2,
-                            ),
-                            overflow: TextOverflow.fade,
-                          ),
-                        ),
-
-                        // Distance
-                        Container(
-                          margin: const EdgeInsets.only(top: 8),
-                          child: Row(
-                            children: [
-                              Icon(Icons.location_on,
-                                  size: 14, color: blueLagoon),
-                              const SizedBox(width: 4),
-                              Text(
-                                place['distance'],
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  color: Colors.grey[600],
-                                ),
-                              ),
-                            ],
                           ),
                         ),
                       ],
                     ),
                   ),
                 ),
+              ],
+            ),
 
-                // Action Buttons
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border(
-                      top: BorderSide(color: Colors.grey[200]!),
+            // Content Section
+            Padding(
+              padding: const EdgeInsets.all(12),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Title
+                  Text(
+                    place['name'],
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: deepSeaGreen,
                     ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  const SizedBox(height: 4),
+
+                  // Description
+                  Text(
+                    place['description'],
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: deepSeaGreen.withValues(alpha: 150),
+                      height: 1.2,
+                    ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+
+                  const SizedBox(height: 8),
+
+                  // Distance
+                  Row(
                     children: [
-                      _buildActionButton(
-                        Icons.info_outline,
-                        'Details',
-                        () {
-                          // Handle view details
-                        },
+                      Icon(
+                        Icons.location_on,
+                        size: 14,
+                        color: blueLagoon,
                       ),
-                      _buildActionButton(
-                        Icons.favorite_border,
-                        'Favorite',
-                        () {
-                          // Handle favorite
-                        },
-                      ),
-                      _buildActionButton(
-                        Icons.bookmark_border,
-                        'Save',
-                        () {
-                          // Handle save
-                        },
+                      const SizedBox(width: 4),
+                      Text(
+                        place['distance'],
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: deepSeaGreen.withValues(alpha: 150),
+                        ),
                       ),
                     ],
                   ),
+                ],
+              ),
+            ),
+
+            // Action Buttons
+            Container(
+              decoration: BoxDecoration(
+                border: Border(
+                  top: BorderSide(
+                    color: deepSeaGreen.withValues(alpha: 50),
+                  ),
                 ),
-              ],
-            );
-          },
+              ),
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  _buildActionButton(
+                    Icons.info_outline,
+                    'Details',
+                    () {
+                      // Handle details
+                    },
+                  ),
+                  _buildActionButton(
+                    Icons.favorite_border,
+                    'Favorite',
+                    () {
+                      // Handle favorite
+                    },
+                  ),
+                  _buildActionButton(
+                    Icons.bookmark_border,
+                    'Save',
+                    () {
+                      // Handle save
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     ),

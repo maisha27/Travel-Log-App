@@ -66,6 +66,20 @@ flutter:
     - assets/google.png
     - assets/facebook.png
     - assets/apple.png
+    - assets/his1.jpg
+    - assets/his2.jpg
+    - assets/his3.jpg
+    - assets/his4.jpg
+    - assets/res1.jpg
+    - assets/res2.jpg
+    - assets/res3.jpg
+    - assets/res4.jpg
+    - assets/travel-bg2.jpg
+    - assets/travel-bg3.jpg
+    - assets/google.png
+    - assets/facebook.png
+    - assets/apple.png
+
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
