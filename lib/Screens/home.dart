@@ -94,7 +94,7 @@ class _HomePageState extends State<HomePage> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           const Text(
-            'Welcome Back, Maisha!',
+            'Welcome Back, James!',
             style: TextStyle(
               color: Colors.white,
               fontSize: 20,
@@ -470,10 +470,12 @@ Widget _buildActionButton(IconData icon, String tooltip, VoidCallback onPressed)
     return BottomNavigationBar(
       currentIndex: _currentIndex,
       onTap: (index) {
-        setState(() {
+      setState(() {
           _currentIndex = index;
         });
-        // Handle navigation
+        if (index == 2) { // Profile tab
+          Navigator.pushNamed(context, '/profile');
+        }
       },
       selectedItemColor: blueLagoon, // Add this to change selected item color
       unselectedItemColor: deepSeaGreen.withValues(),
