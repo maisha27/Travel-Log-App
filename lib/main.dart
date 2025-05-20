@@ -5,7 +5,8 @@ import 'Screens/get_started.dart';
 import 'Screens/login.dart';  
 import 'Screens/registration.dart';
 import 'Screens/home.dart';
-import 'Screens/profile.dart';// make sure the path is correct
+import 'Screens/profile.dart';
+import 'Screens/edit_profile.dart';// make sure the path is correct
 
 void main() => runApp(MyApp());
 
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
         '/registration': (context) => const RegisterPage(),
         '/home': (context) => const HomePage(),
         '/profile': (context) => const ProfilePage(),
+        '/edit-profile': (context) => const EditProfilePage(),
         // Add other routes like '/login': (context) => LoginPage() later
       },
     );

@@ -272,29 +272,76 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Widget _buildBottomNavigation() {
-    return BottomNavigationBar(
-      currentIndex: 2, // Profile tab
-      selectedItemColor: blueLagoon,
-      unselectedItemColor: deepSeaGreen.withValues(alpha: 150),
-      type: BottomNavigationBarType.fixed,
-      items: const [
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          label: 'Home',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.note),
-          label: 'Logs',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.person),
-          label: 'Account',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.logout),
-          label: 'Logout',
-        ),
-      ],
-    );
-  }
+
+  return BottomNavigationBar(
+    currentIndex: 2, // Profile tab
+    selectedItemColor: blueLagoon,
+    unselectedItemColor: deepSeaGreen.withValues(alpha: 150),
+    type: BottomNavigationBarType.fixed,
+    onTap: (index) {
+      switch (index) {
+        case 0: // Home
+          Navigator.pushReplacementNamed(context, '/'); // Navigate to home page
+          break;
+        case 1: // Logs
+          Navigator.pushReplacementNamed(context, '/logs'); // Navigate to logs page
+          break;
+        case 2: // Account/Profile
+          // Already on profile page, no action needed
+          break;
+        case 3: // Logout
+          // Handle logout logic here
+          // For example:
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: const Text('Logout'),
+                content: const Text('Are you sure you want to logout?'),
+                actions: [
+                  TextButton(
+                    onPressed: () => Navigator.pop(context),
+                    child: Text(
+                      'Cancel',
+                      style: TextStyle(color: deepSeaGreen),
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      // Handle logout
+                      Navigator.pop(context); // Close dialog
+                      Navigator.pushReplacementNamed(context, '/login'); // Navigate to login page
+                    },
+                    child: Text(
+                      'Logout',
+                      style: TextStyle(color: blueLagoon),
+                    ),
+                  ),
+                ],
+              );
+            },
+          );
+          break;
+      }
+    },
+    items: const [
+      BottomNavigationBarItem(
+        icon: Icon(Icons.home),
+        label: 'Home',
+      ),
+      BottomNavigationBarItem(
+        icon: Icon(Icons.note),
+        label: 'Logs',
+      ),
+      BottomNavigationBarItem(
+        icon: Icon(Icons.person),
+        label: 'Account',
+      ),
+      BottomNavigationBarItem(
+        icon: Icon(Icons.logout),
+        label: 'Logout',
+      ),
+    ],
+  );
+}
 }
