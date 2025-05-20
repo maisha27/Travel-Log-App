@@ -109,7 +109,7 @@ class _HomePageState extends State<HomePage> {
               radius: 20,
               backgroundColor: Colors.grey[300],
               child: ClipOval(
-                child: Image.network(
+                child: Image.asset(
                   'assets/res4.jpg',
                   width: 40,
                   height: 40,
