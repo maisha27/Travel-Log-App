@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 
@@ -135,7 +136,7 @@ class LoginPage extends StatelessWidget {
                           SizedBox(
                             width: double.infinity,
                             child: ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {Navigator.pushNamed(context, '/home');},
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: const Color(0xFF2E8B8B),
                                 padding: const EdgeInsets.symmetric(vertical: 16),
@@ -146,6 +147,7 @@ class LoginPage extends StatelessWidget {
                               child: const Text(
                                 "Sign In",
                                 style: TextStyle(fontSize: 16, color: Colors.white),
+                                
                               ),
                             ),
                           ),

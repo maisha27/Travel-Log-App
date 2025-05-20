@@ -2,7 +2,8 @@
 import 'package:flutter/material.dart';
 import 'Screens/get_started.dart';
 import 'Screens/login.dart';  
-import 'Screens/registration.dart';// make sure the path is correct
+import 'Screens/registration.dart';
+import 'Screens/home.dart';// make sure the path is correct
 
 void main() => runApp(MyApp());
 
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
         '/': (context) => const GetStartedPage(), // Initial page
         '/login': (context) => const LoginPage(),
         '/registration': (context) => const RegisterPage(),
+         '/home': (context) => const HomePage(),
         // Add other routes like '/login': (context) => LoginPage() later
       },
     );
